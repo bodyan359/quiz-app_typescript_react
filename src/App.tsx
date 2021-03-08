@@ -1,10 +1,11 @@
 import React from 'react';
 import QuestiongCard from './components/QuestionCard';
 import { fetchQuizQuestions, Difficulty, QuestionState } from './API';
+import  { GlobalStyle, Wrapper } from './App.styles';
 
 const TOTAL_QUESTIONS = 10;
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -72,6 +73,9 @@ function App() {
 };
 
   return (
+    <> 
+    <GlobalStyle />
+      <Wrapper>
     <div className="App">
         <h1>TypeScript React Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ?
@@ -79,7 +83,7 @@ function App() {
           Start
         </button>
          : null}
-        {gameOver && <p className="score">Score: </p>}
+        {!gameOver && <p className="score">Score: {score}</p>}
 
         {loading && <p>Loading...</p> }
         {!loading && !gameOver ? (
@@ -99,6 +103,8 @@ function App() {
         </button>
        ):null}  
     </div>
+    </Wrapper>
+    </>
   );
 }
 
